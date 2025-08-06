@@ -1,4 +1,4 @@
-/* Base Reset */
+/* Base */
 * {
   margin: 0;
   padding: 0;
@@ -30,15 +30,13 @@ header {
   top: 0;
   z-index: 999;
 }
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.logo img {
+  height: 50px;
 }
 nav a {
-  margin: 0 1rem;
-  font-size: 1rem;
-  color: #aaa;
-  transition: color 0.3s;
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+  color: #ccc;
 }
 nav a:hover {
   color: #fff;
@@ -63,11 +61,8 @@ nav a:hover {
   font-size: 1.2rem;
   margin: 1rem 0;
 }
-.hero .btn {
-  margin-top: 1rem;
-}
 
-/* Cards Section */
+/* Cards */
 .cards {
   display: grid;
   grid-template-columns: 1fr;
@@ -104,21 +99,32 @@ form button {
   color: #fff;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
 }
 form button:hover {
   background: #0056b3;
 }
 
-/* Footer */
-footer {
-  background-color: #111;
-  text-align: center;
-  padding: 1rem;
-  color: #999;
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 4/3;
 }
 
-/* Button */
+/* Map */
+.map-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* Buttons */
 .btn {
   padding: 0.75rem 1.5rem;
   background: #fff;
@@ -131,7 +137,15 @@ footer {
   background: #ccc;
 }
 
-/* Responsive Grid */
+/* Footer */
+footer {
+  background-color: #111;
+  text-align: center;
+  padding: 1rem;
+  color: #999;
+}
+
+/* Responsive */
 @media (min-width: 768px) {
   .hero {
     flex-direction: row;
