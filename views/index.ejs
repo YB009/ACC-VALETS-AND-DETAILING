@@ -34,24 +34,90 @@
 </section>
 
 <section id="reviews" class="section dark">
-  <h2>What Clients Say</h2>
-  <blockquote>“Brilliant job on Ken's Ranger… even better than expected!” — Anne Rodger</blockquote>
-  <blockquote>“The ceramic coat looks stunning. Rain just slides off!” — Jake Morrison</blockquote>
-  <blockquote>“Came to my place on time, professional & courteous. 10/10.” — Lisa Tran</blockquote>
-  <blockquote>“Impressed by the engine bay cleaning — looks brand new!” — Marcus D.</blockquote>
+  <h2>What Our Clients Say</h2>
+  <div class="reviews-container">
+    <div class="reviews-slider">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Brilliant job on Ken's Ranger... even better than expected! The attention to detail was incredible."</blockquote>
+        <div class="review-author">
+          <div class="author-info">
+            <h4>Anne Rodger</h4>
+            <span class="service-type">Full Valet Service</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The ceramic coat looks stunning. Rain just slides off! Best investment for my car's protection."</blockquote>
+        <div class="review-author">
+          <div class="author-info">
+            <h4>Jake Morrison</h4>
+            <span class="service-type">Ceramic Coating</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Came to my place on time, professional & courteous. 10/10 service and results."</blockquote>
+        <div class="review-author">
+          <div class="author-info">
+            <h4>Lisa Tran</h4>
+            <span class="service-type">Mobile Service</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Impressed by the engine bay cleaning — looks brand new! Highly recommend their services."</blockquote>
+        <div class="review-author">
+          <div class="author-info">
+            <h4>Marcus D.</h4>
+            <span class="service-type">Engine Bay Cleaning</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Outstanding paint correction work. My car looks like it just came from the showroom!"</blockquote>
+        <div class="review-author">
+          <div class="author-info">
+            <h4>Sarah Johnson</h4>
+            <span class="service-type">Paint Correction</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Professional team, excellent communication, and outstanding results. Will definitely use again!"</blockquote>
+        <div class="review-author">
+          <div class="author-info">
+            <h4>David Wilson</h4>
+            <span class="service-type">Interior Detailing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="slider-controls">
+      <button class="slider-btn prev-btn" onclick="slideReviews('prev')">‹</button>
+      <div class="slider-dots"></div>
+      <button class="slider-btn next-btn" onclick="slideReviews('next')">›</button>
+    </div>
+  </div>
 </section>
 
 <section id="gallery" class="section dark">
   <h2>Photos of Our Work</h2>
   <div class="gallery">
-    <img src="/images/work1.jpg" alt="ACC work 1">
-<img src="/images/work2.jpg" alt="ACC work 2">
-<img src="/images/work3.jpg" alt="ACC work 3">
-<img src="/images/work4.jpg" alt="ACC work 4">
-<img src="/images/work5.jpg" alt="ACC work 5">
-<img src="/images/work6.jpg" alt="ACC work 6">
-<img src="/images/work7.jpg" alt="ACC work 7">
-<img src="/images/work8.jpg" alt="ACC work 8">
+    <% for(let i = 1; i <= 20; i++) { %>
+      <img src="/images/work<%= i %>.jpg" alt="ACC work <%= i %>">
+    <% } %>
   </div>
 </section>
 

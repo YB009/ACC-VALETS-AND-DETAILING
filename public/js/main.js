@@ -23,5 +23,124 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset();
       });
     }
+
+    // Gallery image click to zoom
+    const galleryImages = document.querySelectorAll('.gallery img');
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        createLightbox(img.src, img.alt);
+      });
+    });
+
+    // Gallery auto-scroll hint
+    const gallery = document.querySelector('.gallery');
+    if (gallery) {
+      let isScrolling = false;
+      
+      gallery.addEventListener('scroll', () => {
+        isScrolling = true;
+        clearTimeout(gallery.scrollTimeout);
+        gallery.scrollTimeout = setTimeout(() => {
+          isScrolling = false;
+        }, 150);
+      });
+
+      // Add scroll hint on hover
+      gallery.addEventListener('mouseenter', () => {
+        if (!isScrolling) {
+          gallery.style.cursor = 'grab';
+        }
+      });
+    }
+
+    // Initialize reviews slider
+    initializeReviewsSlider();
   });
+
+  // Lightbox functionality
+  function createLightbox(src, alt) {
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+      <div class="lightbox-content">
+        <img src="${src}" alt="${alt}">
+        <button class="lightbox-close">&times;</button>
+      </div>
+    `;
+    
+    document.body.appendChild(lightbox);
+    
+    // Close lightbox
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target.className === 'lightbox-close') {
+        document.body.removeChild(lightbox);
+      }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.body.contains(lightbox)) {
+        document.body.removeChild(lightbox);
+      }
+    });
+  }
+
+// Reviews slider functionality
+let currentReviewIndex = 0;
+let totalReviews = 0;
+
+function initializeReviewsSlider() {
+  const slider = document.querySelector('.reviews-slider');
+  const dotsContainer = document.querySelector('.slider-dots');
+  
+  if (!slider || !dotsContainer) return;
+  
+  const reviewCards = slider.querySelectorAll('.review-card');
+  totalReviews = reviewCards.length;
+  
+  // Create dots
+  for (let i = 0; i < totalReviews; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToReview(i));
+    dotsContainer.appendChild(dot);
+  }
+  
+  // Set initial position
+  updateSliderPosition();
+}
+
+function slideReviews(direction) {
+  if (direction === 'next') {
+    currentReviewIndex = (currentReviewIndex + 1) % totalReviews;
+  } else {
+    currentReviewIndex = currentReviewIndex === 0 ? totalReviews - 1 : currentReviewIndex - 1;
+  }
+  
+  updateSliderPosition();
+}
+
+function goToReview(index) {
+  currentReviewIndex = index;
+  updateSliderPosition();
+}
+
+function updateSliderPosition() {
+  const slider = document.querySelector('.reviews-slider');
+  const dots = document.querySelectorAll('.dot');
+  const cardWidth = 350 + 32; // card width + gap
+  
+  if (slider) {
+    slider.scrollTo({
+      left: currentReviewIndex * cardWidth,
+      behavior: 'smooth'
+    });
+  }
+  
+  // Update dots
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentReviewIndex);
+  });
+}
   
