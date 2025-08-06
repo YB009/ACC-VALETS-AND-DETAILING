@@ -30,13 +30,28 @@ header {
   top: 0;
   z-index: 999;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .logo img {
   height: 60px;
   border-radius: 8px;
   transition: transform 0.3s ease;
 }
+
 .logo img:hover {
   transform: scale(1.05);
+}
+
+.logo-text h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 nav a {
   margin: 0 0.5rem;
@@ -397,6 +412,11 @@ footer {
     min-width: 250px;
     height: 188px;
   }
+  
+  /* Tablet Header */
+  .logo-text h1 {
+    font-size: 1.3rem;
+  }
 }
 @media (min-width: 1024px) {
   .cards {
@@ -442,5 +462,19 @@ footer {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
+  }
+  
+  /* Mobile Header */
+  .logo {
+    gap: 0.5rem;
+  }
+  .logo img {
+    height: 50px;
+  }
+  .logo-text h1 {
+    font-size: 1.2rem;
+  }
+  nav {
+    display: none;
   }
 }
