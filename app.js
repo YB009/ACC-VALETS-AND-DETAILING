@@ -5,24 +5,28 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+// === Body parsers (needed for JSON form submissions) ===
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Quick route to the bookings page
 app.get('/bookings', (req, res) => {
   res.render('bookings', { title: 'Bookings' });
 });
 
-// View engine setup
+// === View engine / layouts ===
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-// Layouts
 app.use(expressLayouts);
 app.set('layout', 'layouts/layout');
 
-// Static files
+// === Static files ===
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+// === Main routes ===
 app.use('/', indexRouter);
 
+// === Start server ===
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`ACC Valets site running at http://localhost:${PORT}`);
