@@ -5,6 +5,10 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+app.get('/bookings', (req, res) => {
+  res.render('bookings', { title: 'Bookings' });
+});
+
 // View engine setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
