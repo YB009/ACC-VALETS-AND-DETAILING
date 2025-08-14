@@ -33,13 +33,75 @@
   </div>
 </section>
 
-<div class="cta-booknow">
-  <a href="/bookings" class="btn-cta">
-     Book our services
-  </a>
-</div>
-  
-  
+<section id="booking" class="section dark">
+  <h2>Book Your Service</h2>
+  <div style="max-width: 900px; margin: 0 auto; padding: 24px; background: #0b0b0b; color: #f1f1f1; border-radius: 18px; border: 1px solid #1e1e1e;">
+    <p style="font-size: 1.05rem; color: #cfcfcf; margin-bottom: 18px; text-align: center;">
+      Fill this form to book valeting or detailing. We'll confirm availability by email/phone.
+    </p>
+
+    <form id="bookingForm" onsubmit="return submitBooking(event)" style="display: grid; gap: 14px; grid-template-columns: 1fr 1fr;">
+      <input name="fullName" placeholder="Full Name" required
+        style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+      <input name="email" type="email" placeholder="Email Address"
+        style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+      <input name="phone" placeholder="Phone Number" required
+        style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+      <input name="vehicle" placeholder="Vehicle (Make, Model, Year)"
+        style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+      <input name="service" placeholder="Preferred Service (e.g., Full Valet)" required
+        style="grid-column: span 2; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+      <input name="date" type="date"
+        style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+      <textarea name="message" rows="5" placeholder="Tell us anything we should know (location, access, paint condition, etc.)"
+        style="grid-column: span 2; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;"></textarea>
+
+      <button type="submit"
+        style="grid-column: span 2; padding: 12px 16px; border-radius: 10px; background: linear-gradient(135deg,#22d3ee,#3b82f6,#a78bfa); color: white; font-weight: 700; border: none; cursor: pointer;">
+        Book now
+      </button>
+    </form>
+
+    <div id="bookStatus" style="margin-top: 12px; font-size: 0.95rem;"></div>
+  </div>
+</section>
+
+<script>
+async function submitBooking(e){
+  e.preventDefault();
+  const form = e.target;
+  const statusEl = document.getElementById('bookStatus');
+  statusEl.textContent = 'Sending...';
+
+  const data = {
+    fullName: form.fullName?.value?.trim(),
+    email: form.email?.value?.trim(),
+    phone: form.phone?.value?.trim(),
+    vehicle: form.vehicle?.value?.trim(),
+    service: form.service?.value?.trim(),
+    date: form.date?.value,
+    message: form.message?.value?.trim(),
+  };
+
+  try{
+    const res = await fetch('/api/book', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify(data)
+    });
+    const out = await res.json();
+    if(!res.ok || !out.ok) throw new Error(out.error || 'Failed to submit');
+
+    statusEl.textContent = `✅ Submitted! Email: ${out.email}.`;
+    form.reset();
+    return false;
+  }catch(err){
+    console.error(err);
+    statusEl.textContent = '⚠️ Could not submit booking. Please try again or call us.';
+    return false;
+  }
+}
+</script>
 
 <section id="reviews" class="section dark">
   <h2>What Our Clients Say</h2>
