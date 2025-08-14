@@ -58,16 +58,105 @@ header {
   letter-spacing: 0.5px;
 }
 
-nav a {
+/* Desktop Navigation */
+.desktop-nav a {
   margin: 0 0.5rem;
   font-size: 0.9rem;
   color: #ccc;
   transition: color 0.5s ease;
 }
-nav a:hover {
+.desktop-nav a:hover {
   color: white;
   text-shadow: 0 10px 30px rgb(0, 4, 255);
+}
 
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1000;
+}
+
+.mobile-menu-btn span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-nav.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 80%;
+  max-width: 300px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav.active a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav a:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav a:nth-child(3) { transition-delay: 0.3s; }
+.mobile-nav a:nth-child(4) { transition-delay: 0.4s; }
+.mobile-nav a:nth-child(5) { transition-delay: 0.5s; }
+.mobile-nav a:nth-child(6) { transition-delay: 0.6s; }
+.mobile-nav a:nth-child(7) { transition-delay: 0.7s; }
+
+.mobile-nav a:hover {
+  background-color: rgba(0, 123, 255, 0.2);
+  color: #007bff;
+  transform: scale(1.05);
 }
 
 /* Hero */
@@ -528,8 +617,11 @@ footer {
   .logo-text h1 {
     font-size: 1.2rem;
   }
-  nav {
+  .desktop-nav {
     display: none;
+  }
+  .mobile-menu-btn {
+    display: flex;
   }
   
   /* Mobile Contact */

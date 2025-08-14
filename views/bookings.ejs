@@ -1,217 +1,71 @@
-<!-- Inline Header -->
-<header style="
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  box-shadow: 0 5px 20px rgb(123,123,123);
-  border-radius: 45px;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 20px;
-  z-index: 999;
-  width: 90%;
-  margin: auto;
-">
-  <div style="display: flex; align-items: center; gap: 1rem;">
-    <img src="/images/logo.png" alt="ACC Valets Logo" style="height: 60px; border-radius: 8px; transition: transform 0.3s;">
-    <div>
-      <h1 style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0; letter-spacing: 0.5px;">ACC Valets & Detailing</h1>
-    </div>
-  </div>
-  <nav>
-    <a href="/" style="margin: 0 0.5rem; font-size: 0.9rem; color: #ccc; transition: color 0.5s; text-decoration: none;">Home</a>
-    <a href="#services" style="margin: 0 0.5rem; font-size: 0.9rem; color: #ccc; transition: color 0.5s; text-decoration: none;" >Services</a>
-    <a href="/bookings" style="margin: 0 0.5rem; font-size: 0.9rem; color: #fff; font-weight: bold; text-decoration: none;">Book</a>
-    <a href="#reviews" style="margin: 0 0.5rem; font-size: 0.9rem; color: #ccc; transition: color 0.5s; text-decoration: none;">Reviews</a>
-    <a href="#gallery" style="margin: 0 0.5rem; font-size: 0.9rem; color: #ccc; transition: color 0.5s; text-decoration: none;">Gallery</a>
-    <a href="#location" style="margin: 0 0.5rem; font-size: 0.9rem; color: #ccc; transition: color 0.5s; text-decoration: none;">Find Us</a>
-    <a href="#follow" style="margin: 0 0.5rem; font-size: 0.9rem; color: #ccc; transition: color 0.5s; text-decoration: none;">Follow</a>
-  </nav>
-</header>
+<%- include('partials/header', { title: (typeof title !== 'undefined' ? title : 'Bookings') }) %>
 
-<div
-  style="
-    background: #111;
-    min-height: 150vh;
-    margin: -130px -8px ;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  "
->
-  <section 
-    style="
-      max-width: 420px;
-      width: 100%;
-      margin: 40px auto 0 auto;
-      padding: 32px 28px 18px 28px;
-      background: #191919;
-      border-radius: 18px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.32);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      color: #f1f1f1;
-      border: none;
-      text-align: left;
-    "
-  >
-    <img src="/images/logo.png" alt="ACC Valets Logo" style="width: 60px; margin-bottom: 10px; border-radius: 8px;">
-    <h2 style="
-      margin-bottom: 10px;
-      font-size: 2rem;
-      color: #fff;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-align: center;
-    ">Book Your Service</h2>
-    <div style="font-size: 1.08rem; color: #ccc; margin-bottom: 18px; text-align: center;">
-      Please fill out the form below to book your car valeting or detailing.<br>
-      Need help? <a href="tel:+447703366762" style="color:#007bff;">Call us</a> or <a href="https://wa.me/447703366762" style="color:#25d366;">WhatsApp</a>
-    </div>
-    <form 
-      id="bookingForm"
-      style="width: 100%; display: flex; flex-direction: column; gap: 18px;"
-      onsubmit="showModal(event)"
-    >
-      <input 
-        type="text" 
-        placeholder="Full Name" 
-        required
-        style="
-          padding: 12px 14px;
-          border-radius: 7px;
-          border: 1px solid #333;
-          font-size: 1rem;
-          background: #222;
-          color: #f1f1f1;
-          transition: border-color 0.2s;
-        "
-        onfocus="this.style.borderColor='#007bff'"
-        onblur="this.style.borderColor='#333'"
-      >
-      <input 
-        type="tel" 
-        placeholder="Phone Number" 
-        required
-        style="
-          padding: 12px 14px;
-          border-radius: 7px;
-          border: 1px solid #333;
-          font-size: 1rem;
-          background: #222;
-          color: #f1f1f1;
-          transition: border-color 0.2s;
-        "
-        onfocus="this.style.borderColor='#007bff'"
-        onblur="this.style.borderColor='#333'"
-      >
-      <select 
-        required
-        style="
-          padding: 12px 14px;
-          border-radius: 7px;
-          border: 1px solid #333;
-          font-size: 1rem;
-          background: #222;
-          color: #f1f1f1;
-          transition: border-color 0.2s;
-        "
-        onfocus="this.style.borderColor='#007bff'"
-        onblur="this.style.borderColor='#333'"
-      >
-        <option value="">Select Service</option>
-        <option>Full Valet</option>
-        <option>Exterior Polish</option>
-        <option>Interior Detail</option>
-        <option>Ceramic Coating</option>
-      </select>
-      <button 
-        type="submit" 
-        style="
-          background: linear-gradient(90deg,#007bff,#0056b3);
-          color: #fff;
-          border: none;
-          padding: 14px 0;
-          border-radius: 7px;
-          font-size: 1.1rem;
-          font-weight: 600;
-          cursor: pointer;
-          margin-top: 10px;
-          box-shadow: 0 2px 8px rgba(0,123,255,0.18);
-          transition: background 0.2s;
-        "
-        onmouseover="this.style.background='linear-gradient(90deg,#0056b3,#007bff)'"
-        onmouseout="this.style.background='linear-gradient(90deg,#007bff,#0056b3)'"
-      >Submit</button>
-    </form>
+<div style="max-width: 900px; margin: 40px auto; padding: 24px; background: #0b0b0b; color: #f1f1f1; border-radius: 18px; border: 1px solid #1e1e1e;">
+  <h1 style="font-size: 2rem; margin-bottom: 10px; text-align: center;">Book Your Service</h1>
+  <p style="font-size: 1.05rem; color: #cfcfcf; margin-bottom: 18px; text-align: center;">
+    Fill this form to book valeting or detailing. We'll confirm availability by email/phone.
+  </p>
 
-    <!-- Modal -->
-    <div id="modal" style="
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-    ">
-      <div style="
-        background: #222;
-        padding: 32px 24px;
-        border-radius: 16px;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.38);
-        text-align: center;
-        max-width: 320px;
-        margin: auto;
-        color: #f1f1f1;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 1.2rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        position: relative;
-        border: 1px solid #007bff;
-      ">
-        <svg width="48" height="48" style="margin-bottom: 12px;" fill="#007bff" viewBox="0 0 24 24"><path d="M12 0C5.371 0 0 5.371 0 12c0 6.629 5.371 12 12 12s12-5.371 12-12c0-6.629-5.371-12-12-12zm-1.2 17.2l-4.2-4.2 1.4-1.4 2.8 2.8 6.8-6.8 1.4 1.4-8.2 8.2z"/></svg>
-        <div>Form Submitted!</div>
-        <div style="font-size: 0.95rem; color: #aaa; margin-top: 8px;">Thank you for booking. Redirecting to home...</div>
-      </div>
-    </div>
+  <form id="bookingForm" onsubmit="return submitBooking(event)" style="display: grid; gap: 14px; grid-template-columns: 1fr 1fr;">
+    <input name="fullName" placeholder="Full Name" required
+      style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+    <input name="email" type="email" placeholder="Email Address"
+      style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+    <input name="phone" placeholder="Phone Number" required
+      style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+    <input name="vehicle" placeholder="Vehicle (Make, Model, Year)"
+      style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+    <input name="service" placeholder="Preferred Service (e.g., Full Valet)" required
+      style="grid-column: span 2; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+    <input name="date" type="date"
+      style="grid-column: span 1; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;">
+    <textarea name="message" rows="5" placeholder="Tell us anything we should know (location, access, paint condition, etc.)"
+      style="grid-column: span 2; padding: 12px 14px; border-radius: 8px; border: 1px solid #333; background:#181818; color:#f1f1f1;"></textarea>
 
-    <script>
-      function showModal(e) {
-        e.preventDefault();
-        document.getElementById('modal').style.display = 'flex';
-        setTimeout(function() {
-          window.location.href = '/';
-        }, 1800);
-      }
-    </script>
+    <button type="submit"
+      style="grid-column: span 2; padding: 12px 16px; border-radius: 10px; background: linear-gradient(135deg,#22d3ee,#3b82f6,#a78bfa); color: white; font-weight: 700; border: none; cursor: pointer;">
+      Book now
+    </button>
+  </form>
 
-
-    <div style="margin-top: 28px; text-align: left; color: #bbb; font-size: 0.98rem;">
-      <strong style="color:#fff;">Why Choose ACC Valets & Detailing?</strong>
-      <ul style="margin: 10px 0 0 18px; padding: 0; list-style-type: none;">
-        <li>✔️ Professional, friendly team</li>
-        <li>✔️ Mobile and unit-based service</li>
-        <li>✔️ Premium products and techniques</li>
-        <li>✔️ 100% satisfaction guarantee</li>
-      </ul>
-    </div>
-  </section>
+  <div id="bookStatus" style="margin-top: 12px; font-size: 0.95rem;"></div>
 </div>
 
-<!-- Inline Footer -->
-<footer style="
-  background-color: black;
-  text-align: center;
-  padding: 1rem;
-  color: #999;
-  margin-top: 40px;
-  border-radius: 0 0 18px 18px;
-">
-  <p>&copy; <script>document.write(new Date().getFullYear())</script> ACC Valets & Detailing. All rights reserved.</p>
-</footer>
+<script>
+async function submitBooking(e){
+  e.preventDefault();
+  const form = e.target;
+  const statusEl = document.getElementById('bookStatus');
+  statusEl.textContent = 'Sending...';
+
+  const data = {
+    fullName: form.fullName?.value?.trim(),
+    email: form.email?.value?.trim(),
+    phone: form.phone?.value?.trim(),
+    vehicle: form.vehicle?.value?.trim(),
+    service: form.service?.value?.trim(),
+    date: form.date?.value,
+    message: form.message?.value?.trim(),
+  };
+
+  try{
+    const res = await fetch('/api/book', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify(data)
+    });
+    const out = await res.json();
+    if(!res.ok || !out.ok) throw new Error(out.error || 'Failed to submit');
+
+    statusEl.textContent = `✅ Submitted! Email: ${out.email}.`;
+    form.reset();
+    return false;
+  }catch(err){
+    console.error(err);
+    statusEl.textContent = '⚠️ Could not submit booking. Please try again or call us.';
+    return false;
+  }
+}
+</script>
+
+<%- include('partials/footer') %>

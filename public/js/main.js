@@ -1,8 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('ACC Valets & Detailing loaded');
   
-    // Smooth scroll for nav
-    document.querySelectorAll('nav a').forEach(link => {
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if (mobileMenuBtn && mobileNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+      });
+      
+      // Close mobile menu when clicking on a link
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuBtn.classList.remove('active');
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+          mobileMenuBtn.classList.remove('active');
+          mobileNav.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  
+    // Smooth scroll for nav (both desktop and mobile)
+    document.querySelectorAll('nav a, .desktop-nav a, .mobile-nav a').forEach(link => {
       link.addEventListener('click', e => {
         if (link.getAttribute('href').startsWith('#')) {
           e.preventDefault();
